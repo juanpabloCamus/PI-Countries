@@ -1,6 +1,6 @@
 const axios = require('axios');
 const url = 'https://restcountries.com/v3/all';
-const {Country} = require('../db');
+
 
 const getParsedApi = async () => {
     let api = await axios(url);
