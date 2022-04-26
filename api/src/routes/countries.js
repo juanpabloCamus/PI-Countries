@@ -1,0 +1,48 @@
+const { Router } = require('express');
+const {Country} = require('../db');
+const router = Router();
+
+//Get all countries or get all countries by name
+router.get('/',async (req, res) => {
+    let {name} = req.query;
+    if(name){
+        name = name.charAt(0).toUpperCase() + name.slice(1);
+        try{    
+            let country = await Country.findOne({
+                where: {commonName: name}
+            });
+            if (country) return res.send(country);
+            else return res.status(400).send('Country not found');
+        }catch(e){
+            console.log(e);
+            return res.send(e);
+        }
+    }
+    else{
+        try{
+            return res.send(await Country.findAll({
+                order: ['commonName']
+            }));
+        }catch(e){
+            console.log(e);
+            return res.send(e);
+        }
+    }
+});
+
+//Get country by id
+router.get('/:id', async (req, res) => {
+    let {id} = req.params;
+    id = id.toUpperCase();
+    if(id.length !== 3) return res.status(400).send('The id must have only 3 letters');
+    try{
+        let country = await Country.findByPk(id);
+        if(country) return res.send(country);
+        else return res.status(400).send('Country not found');
+    }catch(e){
+        console.log(e)
+        return res.send(e);
+    }
+});
+
+module.exports = router;

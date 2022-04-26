@@ -3,6 +3,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const getParsedApi = require('./API-Info/countriesInfo');
+const {Country} = require('./db')
 
 require('./db.js');
 
@@ -21,6 +23,42 @@ server.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   next();
 });
+
+//Check Database Status
+async function areDbLoaded(){
+  let c = await Country.findAll();
+  return c.length;
+}
+
+async function load(){
+  let c = await areDbLoaded();
+  console.log(c)
+  if(c === 0){
+    try{
+      let api = await getParsedApi();
+        api.map(c => {
+          Country.create({
+            id: c.id,
+            commonName: c.commonName,
+            officialName: c.officialName ,
+            capital: c.capital,
+            continent: c.continent,
+            subregion: c.subregion,
+            languages: c.languages,
+            area: c.area,
+            population: c.population,
+            currencies: c.currencies ,
+            flagImg: c.flagImg,
+            maps: c.maps
+          })  
+        })
+        console.log('database loaded')
+    }catch(e){
+      console.log(e)
+    }
+  }
+}
+load()
 
 server.use('/', routes);
 
