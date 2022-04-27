@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {Country} = require('../db');
+const {Country, Country_Activity} = require('../db');
 const router = Router();
 
 //Get all countries or get all countries by name
@@ -37,6 +37,16 @@ router.get('/:id', async (req, res) => {
     if(id.length !== 3) return res.status(400).send('The id must have only 3 letters');
     try{
         let country = await Country.findByPk(id);
+        let acts = await Country_Activity.findAll({
+            where: {
+                CountryId: id
+            }
+        })
+        if (acts.length > 0) {
+            let response = [];
+            response.push(country, acts);
+            return res.json(response);
+        }
         if(country) return res.send(country);
         else return res.status(400).send('Country not found');
     }catch(e){
