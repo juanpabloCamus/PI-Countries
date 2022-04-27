@@ -37,11 +37,7 @@ router.get('/:id', async (req, res) => {
     if(id.length !== 3) return res.status(400).send('The id must have only 3 letters');
     try{
         let country = await Country.findByPk(id);
-        let acts = await Country_Activity.findAll({
-            where: {
-                CountryId: id
-            }
-        })
+        let acts = await country.getActivities();
         if (acts.length > 0) {
             let response = [];
             response.push(country, acts);
