@@ -1,11 +1,16 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import './nav.css'
+import Logo from "./logo/logo";
+import SeacrhBar from "./searchBar/searchBar";
+import AddAct from "./addActivity/addAct";
 
 const Nav = (props) => {
     return(
-    <div>
-        <Link to = {'/'}>LandingPage</Link>
-        <Link to = {'/home'}>Home</Link>
+    <div className='nav'>
+        <Logo/>
+        <SeacrhBar/>
+        <AddAct></AddAct>
     </div>
     )
 }
