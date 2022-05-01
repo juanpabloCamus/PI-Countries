@@ -5,11 +5,19 @@ import { getCountryDetail } from "../../../../../redux/actions/actions";
 
 const CountryDetail = (props) => {
     const {id} = useParams();
-
     useEffect(()=>{
         props.getCountryDetail(id);
     },[])
     
+    if(props.country[1]){
+        return(
+            <div>
+                <h1>{props.country[0].commonName}</h1>
+                <h2>{props.country[1][1].name}</h2>
+            </div>
+        )
+    }
+
     return(
         <div>
             <img src={props.country.flagImg}></img>

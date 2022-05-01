@@ -3,7 +3,8 @@ import LandingPage from './components/landingPage/landingPage';
 import Home from './components/home/home';
 import { Route } from "react-router-dom";
 import CountryDetail from './components/home/countriesContainer/country/countryDetail/countryDetail';
-import Nav from './components/nav/nav'
+import Nav from './components/nav/nav';
+import ActForm from './components/activityForm/activityForm';
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
     <Route exact path={'/home'}>
       <Home/>
     </Route>
-    <Route path={'/home/:id'}>
+    <Route exact path={'/home/:id'}>
       <CountryDetail/>
+    </Route>
+    <Route exact path={'/addActivity'}>
+      <ActForm/>
     </Route>
   </div>
   );

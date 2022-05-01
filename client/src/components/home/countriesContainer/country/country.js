@@ -3,6 +3,8 @@ import './country.css';
 import { Link } from "react-router-dom";
 
 const Country = (props) => {
+
+    
     return(
         <Link to={`/home/${props.id}`}>
             <div className="country">

@@ -1,8 +1,12 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export function AddAct () {
     return(
-        <button>Add Activity</button>
+        <Link to={'/addActivity'}>
+            <div>
+                <h3>addActivity</h3>
+            </div>
+        </Link>
     )
 }
 
