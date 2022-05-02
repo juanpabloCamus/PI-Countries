@@ -1,18 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Country from "./country/country";
 import { getCountries } from "../../../redux/actions/actions";
 import { connect } from "react-redux";
-import './countriesContainer.css'
+import './countriesContainer.css';
+import Pagination from "./Pagination";
 
 const CountriesContainer = (props) => {
+
+    //const [loading, setLoading] = useState(false);
+    const [currrentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage, setCountriesPerPage] = useState(10);
 
     useEffect(() => {
         props.getCountries()
     }, [])
+
+    const indexOfLastCountry = currrentPage * countriesPerPage; 
+    const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
+    const currrentCountries = props.countries.slice(indexOfFirstCountry, indexOfLastCountry);
     
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return(
         <div className="countriesContainer">
-            {props.countries?.map(c => (
+            {currrentCountries.map(c => (
                 <div>
                     <Country
                       key={c.id}
@@ -23,6 +34,7 @@ const CountriesContainer = (props) => {
                     />
                 </div>
             ))}
+            <Pagination countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
         </div>     
     )
 }
@@ -40,3 +52,4 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountriesContainer);
+

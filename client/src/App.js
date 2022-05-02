@@ -6,6 +6,7 @@ import CountryDetail from './components/home/countriesContainer/country/countryD
 import Nav from './components/nav/nav';
 import ActForm from './components/activityForm/activityForm';
 
+
 function App() {
   return (
     <div>
