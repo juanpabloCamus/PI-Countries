@@ -1,8 +1,9 @@
-import { GET_COUNTRIES, GET_COUNTRY_DETAIL, ADD_ACTIVITY } from "../actions/actions";
+import { GET_COUNTRIES, GET_COUNTRY_DETAIL, ADD_ACTIVITY, SET_SEARCH} from "../actions/actions";
 
 const initialState = {
     countries: [],
     country: {},
+    search: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -24,6 +25,13 @@ const reducer = (state = initialState, action) => {
         case ADD_ACTIVITY:{
             return{
                 ...state
+            }
+        }
+
+        case SET_SEARCH:{
+            return{
+                ...state,
+                search: action.search
             }
         }
 
