@@ -1,0 +1,23 @@
+.navButtonContainer{
+    text-align: center;
+}
+
+.navButton{
+    text-align: center;
+    font-size: 16px;
+    border-radius: 5px;
+    height: 40%;
+    margin-top: 30px;
+    background-color: rgba(245, 222, 179, 0.852);
+    color: black;
+    cursor: pointer;
+    border: none;
+    transition-duration: 0.5s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.navButton:hover{
+    background-color: rgb(172, 17, 17);
+    color: aliceblue;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

@@ -1,6 +1,6 @@
-
 import { connect } from "react-redux";
 import { setSearch } from "../../../../../redux/actions/actions";
+import styles from './searchBar.module.css'
 
 export function SeacrhBar (props) {
 
@@ -11,9 +11,8 @@ export function SeacrhBar (props) {
     }
 
     return(
-        <div>
-            <input type='text' name="search" onChange={handleChange}></input>
-            <button type='submit'>Buscar</button>
+        <div className={styles.searchBarContainer}>
+            <input className={styles.searchBarInput} placeholder='Search by name...' type='text' name="search" onChange={handleChange}></input>
         </div>  
     )
 }

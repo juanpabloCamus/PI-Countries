@@ -1,13 +1,17 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import styles from'./landingPage.module.css';
+import img from '../../assets/logoworld.png'
+
 
 const LandingPage = (props) => {
     return(
-        <div className="landing">
-            <h1 className="h1">Welcome to Countries App</h1>,
-            <button>
-                <Link to = {'/home'}>Home</Link>
-            </button>
+        <div className={styles.lpContainer}>
+            <img src={img} className={styles.lpLogo}></img>
+            <h1 className={styles.lpTitle}>Countries Wiki</h1>
+            <Link to = {'/home'} >
+                <button className={styles.lpButton}>Explore The World!</button>
+            </Link>
         </div>
     )
 }

@@ -1,0 +1,19 @@
+.countryCardContainer{
+    background-color: beige;
+    margin: 20px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    color: black;
+    border-radius: 3px;
+}
+
+.imgCountryContainer{
+    padding: 5px;
+}
+
+.imgCountryCard{
+    height: 200px;
+    width: 320px;
+    object-fit: cover;
+}

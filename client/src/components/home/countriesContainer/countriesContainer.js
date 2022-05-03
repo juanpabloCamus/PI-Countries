@@ -2,7 +2,7 @@ import React, { useEffect, useState,useReducer } from "react";
 import Country from "./country/country";
 import { getCountries } from "../../../redux/actions/actions";
 import { connect } from "react-redux";
-import './countriesContainer.css';
+import styles from'./countriesContainer.module.css';
 import Pagination from "./Pagination";
 import Nav from './nav/nav';
 import Filters from "./Filters/Filters";
@@ -33,20 +33,30 @@ const CountriesContainer = (props) => {
 
     
     return(
-        <div className="countriesContainer">
+        <div className={styles.homeContainer}>
             <Nav/>
             <Filters/>
-            {currrentCountries.map(c => (
-                <div>
-                    <Country
-                      key={c.id}
-                      id={c.id}
-                      name = {c.commonName}
-                      continent={c.continent}
-                      img = {c.flagImg}  
-                    />
-                </div>
-            ))}
+            <div  className={styles.countriesContainer}>
+                {currrentCountries.map(c => (
+                    <div>
+                        <Country
+                        key={c.id}
+                        id={c.id}
+                        commonName = {c.commonName}
+                        officialName = {c.officialName}
+                        capital = {c.capital}
+                        subregion = {c.subregion}
+                        languages = {c.languages}
+                        area = {c.area}
+                        population = {c.population}
+                        currencies = {c.currencies}
+                        continent={c.continent}
+                        img = {c.flagImg} 
+                        maps = {c.maps} 
+                        />
+                    </div>
+                ))}
+            </div>
             <Pagination countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
         </div>     
     )

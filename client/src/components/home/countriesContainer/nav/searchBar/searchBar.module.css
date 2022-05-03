@@ -1,0 +1,11 @@
+.searchBarContainer{
+    text-align: center;
+}
+
+.searchBarInput{
+    border: none;
+    border-radius: 5px;
+    width: 80%;
+    height: 30%;
+    margin-top: 35px;
+}

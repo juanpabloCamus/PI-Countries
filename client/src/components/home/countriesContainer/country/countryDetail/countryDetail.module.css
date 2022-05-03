@@ -1,0 +1,13 @@
+.cDContainer{
+    margin-top: 180px;
+    justify-content: center;
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    
+}
+
+.cDFirstContainer{
+    margin-top: 25px;
+    text-align: center;
+}

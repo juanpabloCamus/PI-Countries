@@ -1,5 +1,5 @@
 import React from "react";
-import './country.css';
+import styles from './country.module.css';
 import { Link } from "react-router-dom";
 
 const Country = (props) => {
@@ -7,10 +7,14 @@ const Country = (props) => {
     
     return(
         <Link to={`/home/${props.id}`}>
-            <div className="country">
-            <h4>{props.name}</h4>
-            <h5>{props.continent}</h5>
-            <img src={props.img}></img>
+            <div className={styles.countryCardContainer}>
+                <div className={styles.imgCountryContainer}>
+                    <img className={styles.imgCountryCard} src={props.img}></img>
+                </div>
+                <div className={styles.countryTextContainer}>
+                    <h2>{props.commonName}</h2>
+                    <h3>{props.continent}</h3>
+                </div>
             </div>
         </Link>
     )

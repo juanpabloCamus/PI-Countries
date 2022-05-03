@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
     <Route exact path={'/'}>
-      <LandingPage/>
+      <LandingPage className='s'/>
     </Route>
     <Route exact path={'/home'}>
       <Home/>

@@ -1,0 +1,4 @@
+.pagContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
