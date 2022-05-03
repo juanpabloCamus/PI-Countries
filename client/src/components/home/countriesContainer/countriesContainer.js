@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useReducer } from "react";
 import Country from "./country/country";
 import { getCountries } from "../../../redux/actions/actions";
 import { connect } from "react-redux";
 import './countriesContainer.css';
 import Pagination from "./Pagination";
 import Nav from './nav/nav';
+import Filters from "./Filters/Filters";
 
 const CountriesContainer = (props) => {
 
@@ -12,23 +13,29 @@ const CountriesContainer = (props) => {
     
     const [currrentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, setCountriesPerPage] = useState(10);
-   
+
     useEffect(() => {
         props.getCountries()
     }, [])
+    
+    useEffect(() => {
+        if (props.population === 'off') props.getCountries()
+    }, [props.population])
 
     const indexOfLastCountry = currrentPage * countriesPerPage; 
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     let currrentCountries = props.countries.slice(indexOfFirstCountry, indexOfLastCountry);
-    
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    let {search} = props.search;
+    if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toString().toLowerCase()));
+    if (props.population === 'asc') props.countries.sort((a,b) => b.population - a.population);
+    if (props.population === 'dsc') props.countries.sort((a,b) => a.population - b.population);
 
-    const {search} = props.search;
-    if (search.length > 0) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toString().toLowerCase()));
-    //continente, as, des,pob
+    
     return(
         <div className="countriesContainer">
             <Nav/>
+            <Filters/>
             {currrentCountries.map(c => (
                 <div>
                     <Country
@@ -47,8 +54,10 @@ const CountriesContainer = (props) => {
 
 export const mapStateToProps = (state) => {
     return{
-      countries: state.countries,
-      search: state.search
+        countries: state.countries,
+        search: state.search,
+        order: state.order,
+        population: state.population
     }
 }
   

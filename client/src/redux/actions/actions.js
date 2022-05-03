@@ -4,6 +4,9 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL';
 export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const SET_SEARCH = 'SET_SEARCH';
+export const SET_COUNTRIES_CONTINENT = 'SET_COUNTRIES_CONTINENT';
+export const SET_COUNTRIES_ALPHA = 'SET_COUNTRIES_ALPHA';
+export const COUNTRY_POPULATION = 'COUNTRY_POPULATION';
 
 // export const getCountries = () => {
 //     return async function(dispatch){
@@ -49,4 +52,22 @@ export const setSearch = (search) => {
     return(
         {type: SET_SEARCH, search:search}
     )
+}
+
+export const setCountriesContinent = (continent) => {
+    return(
+        {type: SET_COUNTRIES_CONTINENT, continent:continent}
+    )
+}
+
+export const countriesByPopulation = (o) => {
+    return{
+        type: COUNTRY_POPULATION, turn: o
+    }
+}
+
+export const setCountriesAlpha = (o) => {
+    return{
+        type: SET_COUNTRIES_ALPHA, order:o
+    }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+
 import { connect } from "react-redux";
 import { setSearch } from "../../../../../redux/actions/actions";
 
@@ -24,10 +24,4 @@ export const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export const mapStateToProps = (state) => {
-    return{
-      countries: state.countries
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(SeacrhBar);
+export default connect(null,mapDispatchToProps)(SeacrhBar);
