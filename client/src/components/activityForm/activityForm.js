@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries } from "../../redux/actions/actions";
+import { getCountries, getActivities } from "../../redux/actions/actions";
 import styles from './activityForm.module.css';
 import BackButton from '../backButton/backButton'
 
@@ -9,10 +9,31 @@ export function ActForm (){
 
     const dispatch = useDispatch();
     let countries = useSelector((state)=> state.countries)
-
+    let activities = useSelector((state)=> state.activities)
+    
+    
     useEffect(()=>{
         dispatch(getCountries())
+        dispatch(getActivities())
     },[])
+
+    // let [actName, setactName] = useState([]);
+
+    // async function addActDiv(){
+    //     let acts = await dispatch(getActivities());
+    //     acts = acts.payload;    
+    //     let actNames = [];
+    //     let countriesNames = []
+    //     for (let i = 0; i < acts.length; i++) {
+    //         actNames.push(acts[i].name);
+    //         setactName(actName.concat(actNames))
+    //     }
+        
+    //     for (let i = 0; i < acts.length; i++) {
+    //         countriesNames.push(acts[i].Countries)
+    //     }
+    //     console.log(countriesNames);
+    // }
 
     let [activity, setActivity] = useState({
        name: '',
@@ -41,10 +62,13 @@ export function ActForm (){
         let post = activity;
         post.name = post.name[0];
         post.countryId = selected;
-        console.log(post);
+        post.duration = post.duration[0]
+        post.difficulty = post.difficulty[0]
+        if (Array.isArray(post.season)) post.season = post.season[0]
         await axios.post('http://localhost:3001/activities',{post})
         .then(resp => alert(resp.data))
         .catch(err => alert(err.response.data))
+        setSelected([])
     }
     
     return(
@@ -53,7 +77,7 @@ export function ActForm (){
                 <BackButton/>
             </div>
             <div className={styles.formContainer}>
-                <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+                <form className={styles.form} onSubmit={(e) => {handleSubmit(e)}}>
 
                     <div className={styles.divName}>
                         <label>Add Activity</label> <br></br>
@@ -101,12 +125,20 @@ export function ActForm (){
 
                     <div>
                         <label>Selected: </label>
-                        <label>{' ' + selected + ' '}</label>
+                        <label>{' ' + selected}</label>
                     </div>
 
                     <button className={styles.sendButton} type="submit" name={'name'} onChange={handleChange} >Send</button>
                 </form>
             </div>
+
+            {/* <div>
+                Activities Created:
+                    <div>
+                        {actName.map(a => (<label key={a}>{a}<br></br></label>))}
+                    </div>
+            </div> */}
+
         </div>
     )
 }

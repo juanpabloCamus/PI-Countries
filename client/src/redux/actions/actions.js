@@ -4,8 +4,9 @@ export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL';
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_COUNTRIES_CONTINENT = 'SET_COUNTRIES_CONTINENT';
-export const SET_COUNTRIES_ALPHA = 'SET_COUNTRIES_ALPHA';
 export const COUNTRY_POPULATION = 'COUNTRY_POPULATION';
+export const GET_ACTIVITIES = 'GET_ACTIVITIES';
+export const COUNTRY_ALPHA = 'COUNTRY_ALPHA';
 
 // export const getCountries = () => {
 //     return async function(dispatch){
@@ -37,6 +38,16 @@ export const getCountryDetail = (id) => {
     }
 }
 
+export const getActivities = () => {
+    return async function(dispatch){
+        return(
+            fetch(`http://localhost:3001/activities`)
+            .then(resp => resp.json())
+            .then(data => dispatch({type: GET_ACTIVITIES, payload: data}))
+        )
+    }
+}
+
 export const setSearch = (search) => {
     return(
         {type: SET_SEARCH, search:search}
@@ -49,14 +60,15 @@ export const setCountriesContinent = (continent) => {
     )
 }
 
-export const countriesByPopulation = (o) => {
+export const countriesByPopulation = (turn) => {
     return{
-        type: COUNTRY_POPULATION, turn: o
+        type: COUNTRY_POPULATION, turn: turn
     }
 }
 
-export const setCountriesAlpha = (o) => {
+export const countriesByAlpha = (turn) => {
     return{
-        type: SET_COUNTRIES_ALPHA, order:o
+        type: COUNTRY_ALPHA, turn: turn
     }
 }
+

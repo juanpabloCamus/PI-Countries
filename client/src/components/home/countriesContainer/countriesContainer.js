@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useReducer } from "react";
 import Country from "./country/country";
-import { getCountries } from "../../../redux/actions/actions";
+import { getActivities, getCountries } from "../../../redux/actions/actions";
 import { connect } from "react-redux";
 import styles from'./countriesContainer.module.css';
 import Pagination from "./Pagination";
@@ -16,6 +16,7 @@ const CountriesContainer = (props) => {
 
     useEffect(() => {
         props.getCountries()
+        props.getActivities()
     }, [])
     
     useEffect(() => {
@@ -28,6 +29,7 @@ const CountriesContainer = (props) => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     let {search} = props.search;
     if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toString().toLowerCase()));
+    
     if (props.population === 'asc') props.countries.sort((a,b) => b.population - a.population);
     if (props.population === 'dsc') props.countries.sort((a,b) => a.population - b.population);
 
@@ -67,13 +69,15 @@ export const mapStateToProps = (state) => {
         countries: state.countries,
         search: state.search,
         order: state.order,
-        population: state.population
+        population: state.population,
+        alpha: state.alpha
     }
 }
   
 export const mapDispatchToProps = (dispatch) => {
     return{
-      getCountries: () => dispatch(getCountries())
+      getCountries: () => dispatch(getCountries()),
+      getActivities: () => dispatch(getActivities())
     }
 }
 

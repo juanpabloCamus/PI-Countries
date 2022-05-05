@@ -1,11 +1,12 @@
-import { GET_COUNTRIES, GET_COUNTRY_DETAIL, SET_SEARCH, SET_COUNTRIES_CONTINENT, SET_COUNTRIES_ALPHA, COUNTRY_POPULATION} from "../actions/actions";
+import { GET_COUNTRIES, GET_COUNTRY_DETAIL, SET_SEARCH, SET_COUNTRIES_CONTINENT, COUNTRY_POPULATION,GET_ACTIVITIES, COUNTRY_ALPHA} from "../actions/actions";
 
 const initialState = {
     countries: [],
     country: {},
+    activities: [],
     search: '',
-    order: 'Ascendent',
-    population: "off"
+    population: "off",
+    alpha: 'asc'
 };
 
 const reducer = (state = initialState, action) => {
@@ -21,6 +22,13 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 country: action.payload
+            }
+        }
+
+        case GET_ACTIVITIES:{
+            return{
+                ...state,
+                activities: action.payload
             }
         }
 
@@ -45,9 +53,10 @@ const reducer = (state = initialState, action) => {
             }
         }
 
-        case SET_COUNTRIES_ALPHA:{
+        case COUNTRY_ALPHA:{
             return{
-                ...state, order: action.order, countries: state.countries.reverse()
+                ...state,
+                alpha: action.turn
             }
         }
 

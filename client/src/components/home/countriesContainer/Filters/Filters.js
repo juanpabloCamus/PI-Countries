@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getCountries, setCountriesContinent, setCountriesAlpha, countriesByPopulation } from "../../../../redux/actions/actions";
+import { getCountries, setCountriesContinent, countriesByPopulation, countriesByAlpha } from "../../../../redux/actions/actions";
 import './filters.css';
 
 const Filters = (props) => {
@@ -11,20 +11,22 @@ const Filters = (props) => {
         else props.setCountriesContinent(e.target.value);
     }
 
-    const selectPopulation = async (e) => {
-        if (e.target.value === '---') props.countriesByPopulation("off")
-        if (e.target.value === 'Ascendent') props.countriesByPopulation("asc")
-        if (e.target.value === 'Descendent') props.countriesByPopulation("dsc")
+    const selectPopulation = (e) => {
+        if (e.target.value === '---') {props.countriesByPopulation("off"); props.countriesByAlpha("asc")}
+        if (e.target.value === 'Ascendent'){props.countriesByPopulation("asc");props.countriesByAlpha("off");} 
+        if (e.target.value === 'Descendent') {props.countriesByPopulation("dsc"); props.countriesByAlpha("off")}
     }
 
     const selectAlpha = (e) => {
-        props.setCountriesAlpha(e.target.value)
+        if (e.target.value === '---') {props.countriesByAlpha("off"); props.countriesByPopulation("asc");} 
+        if (e.target.value === 'Ascendent') {props.countriesByAlpha("asc"); props.countriesByPopulation("off");}
+        if (e.target.value === 'Descendent') {props.countriesByAlpha("dsc"); props.countriesByPopulation("off");}
     }
 
     return(
         <div className="filters">
             <div>
-                <span>Filter by continent:</span><br></br>
+                <span>Continent:</span><br></br>
                 <select onChange={e => selectContinent(e)}>
                     <option selected>All</option>
                     <option>Africa</option>
@@ -40,7 +42,8 @@ const Filters = (props) => {
             <div>
             <span>Alphabetical Order:</span><br></br>
             <select onChange={e => selectAlpha(e)}>
-                <option selected>Ascendent</option>
+                <option >---</option>
+                <option>Ascendent</option>
                 <option>Descendent</option>
             </select>
             </div>
@@ -59,10 +62,10 @@ const Filters = (props) => {
 
 export const mapDispatchToProps = (dispatch) => {
     return{
-      setCountriesContinent: (S) => dispatch(setCountriesContinent(S)),
+      setCountriesContinent: (continent) => dispatch(setCountriesContinent(continent)),
       getCountries: () => dispatch(getCountries()),
-      setCountriesAlpha: (o) => dispatch(setCountriesAlpha(o)),
-      countriesByPopulation: (p) => dispatch(countriesByPopulation(p))
+      countriesByPopulation: (turn) => dispatch(countriesByPopulation(turn)),
+      countriesByAlpha: (turn) => dispatch(countriesByAlpha(turn))
     }
 }
 
