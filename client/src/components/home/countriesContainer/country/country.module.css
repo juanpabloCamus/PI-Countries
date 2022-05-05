@@ -1,5 +1,5 @@
 .countryCardContainer{
-    background-color: beige;
+    background-color: rgba(245, 222, 179, 0.852);
     margin: 20px;
     border: none;
     padding: 5px;
@@ -17,3 +17,5 @@
     width: 320px;
     object-fit: cover;
 }
+
+/* rgba(245, 222, 179, 0.852); */

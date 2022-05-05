@@ -1,4 +1,4 @@
-import { GET_COUNTRIES, GET_COUNTRY_DETAIL, ADD_ACTIVITY, SET_SEARCH, SET_COUNTRIES_CONTINENT, SET_COUNTRIES_ALPHA, COUNTRY_POPULATION} from "../actions/actions";
+import { GET_COUNTRIES, GET_COUNTRY_DETAIL, SET_SEARCH, SET_COUNTRIES_CONTINENT, SET_COUNTRIES_ALPHA, COUNTRY_POPULATION} from "../actions/actions";
 
 const initialState = {
     countries: [],
@@ -21,12 +21,6 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 country: action.payload
-            }
-        }
-
-        case ADD_ACTIVITY:{
-            return{
-                ...state
             }
         }
 

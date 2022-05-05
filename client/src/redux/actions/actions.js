@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL';
-export const ADD_ACTIVITY = 'ADD_ACTIVITY';
 export const SET_SEARCH = 'SET_SEARCH';
 export const SET_COUNTRIES_CONTINENT = 'SET_COUNTRIES_CONTINENT';
 export const SET_COUNTRIES_ALPHA = 'SET_COUNTRIES_ALPHA';
@@ -34,16 +33,6 @@ export const getCountryDetail = (id) => {
             fetch(`http://localhost:3001/countries/${id}`)
             .then(resp => resp.json())
             .then(data => dispatch({type: GET_COUNTRY_DETAIL, payload: data}))
-        )
-    }
-}
-
-export const addActivity = (activity) => {
-    return async function(dispatch){
-        return(
-            axios.post('http://localhost:3001/activities',{activity})
-            .then(dispatch({type: ADD_ACTIVITY}))
-            
         )
     }
 }

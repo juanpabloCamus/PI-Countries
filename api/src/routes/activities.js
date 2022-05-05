@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { json } = require('express/lib/response');
 const {Country, Activity, Country_Activity} = require('../db');
 const router = Router();
 
@@ -16,10 +17,11 @@ router.get('/', async (req, res) => {
 
 //Post an activity
 router.post('/', async (req, res) => {
-    let {name, difficulty, duration, season, cId} = req.body;
-    if(name && difficulty && duration && season && cId){
+    let {name, difficulty, duration, season, countryId} = req.body.post;
+    console.log(req.body.post);
+    if(name && difficulty && duration && season && countryId){
         if(!( difficulty >= 1 && difficulty <= 5)) return res.status(400).send('wrong data');
-        if(season === 'summer' || season === 'winter' || season === 'spring' || season === 'autumn'){
+        if(season === 'Summer' || season === 'Winter' || season === 'Spring' || season === 'Sutumn' || season === 'Indifferent'){
             try{
                 let act = await Activity.findOrCreate({
                     where:{
@@ -29,8 +31,9 @@ router.post('/', async (req, res) => {
                         season: season
                     }
                 });
-                act[0].addCountries(cId);
+                act[0].addCountries(countryId);
                 if(!act[1]) return res.send('This activity is already created');
+                console.log('Activity Created!');
                 return res.send('Activity Created!');
             }catch(e){
                 console.log(e);
@@ -42,6 +45,7 @@ router.post('/', async (req, res) => {
         }
     }
     else{
+        console.log('missing data');
         return res.status(400).send('missing data');
     }
 });

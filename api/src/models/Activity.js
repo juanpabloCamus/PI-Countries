@@ -15,12 +15,13 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         duration:{
-            type: DataTypes.TIME,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         season:{
-            type: DataTypes.ENUM('summer', 'winter', 'spring', 'autumn'),
-            allowNull: false
+            type: DataTypes.ENUM('Indifferent','Summer', 'Winter', 'Spring', 'Autumn'),
+            allowNull: false,
+            defaultValue: "Indifferent"
         }
     },
     {createdAt:true, updatedAt: false});
