@@ -1,20 +1,27 @@
-import { GET_COUNTRIES, GET_COUNTRY_DETAIL, SET_SEARCH, SET_COUNTRIES_CONTINENT, COUNTRY_POPULATION,GET_ACTIVITIES, COUNTRY_ALPHA} from "../actions/actions";
+import {
+    GET_COUNTRIES,
+    GET_COUNTRY_DETAIL,
+    SET_SEARCH, SET_COUNTRIES_CONTINENT,
+    GET_ACTIVITIES,
+    ORDER_BY_POPULATION,
+    ORDER_BY_ALPHA 
+} from "../actions/actions";
 
 const initialState = {
     countries: [],
     country: {},
     activities: [],
     search: '',
-    population: "off",
-    alpha: 'asc'
+    order: ''
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
+
         case GET_COUNTRIES:{
             return{
                 ...state,
-                countries: action.payload
+                countries: action.payload,
             }
         }
         
@@ -45,18 +52,22 @@ const reducer = (state = initialState, action) => {
                 countries: state.countries.filter(c => c.continent === action.continent)
             }
         }
-
-        case COUNTRY_POPULATION:{
+        
+        case ORDER_BY_ALPHA :{
             return{
                 ...state,
-                population: action.turn
+                countries: state.countries.reverse()
             }
         }
 
-        case COUNTRY_ALPHA:{
+        case ORDER_BY_POPULATION:{
+            let sort = action.payload
+            if (sort === 'asc') sort = state.countries.sort((a,b) => b.population - a.population);
+            if (sort === 'dsc') sort = state.countries.sort((a,b) => a.population - b.population);
+            if (sort === 'off') return{...state}
             return{
                 ...state,
-                alpha: action.turn
+                countries: sort,
             }
         }
 

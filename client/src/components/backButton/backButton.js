@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function BackButton(){
     return(
     <Link to={'/home'}>
-        <img src={img}></img>
+        <img alt="arrowBack" src={img}></img>
     </Link>
     )
 }

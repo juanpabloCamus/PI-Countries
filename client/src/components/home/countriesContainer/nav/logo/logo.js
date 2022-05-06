@@ -5,7 +5,7 @@ import img from '../../../../../assets/logoworld.png'
 export function Logo (){
     return(
         <div className={styles.logoContainer}>
-            <img src={img} className={styles.navLogo}></img>
+            <img alt="arrowBack" src={img} className={styles.navLogo}></img>
             <h5 className={styles.navTitle}>Countries Wiki</h5>
         </div> 
     )

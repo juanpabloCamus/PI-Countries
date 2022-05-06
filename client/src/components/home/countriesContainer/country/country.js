@@ -9,7 +9,7 @@ const Country = (props) => {
         <Link to={`/home/${props.id}`}>
             <div className={styles.countryCardContainer}>
                 <div className={styles.imgCountryContainer}>
-                    <img className={styles.imgCountryCard} src={props.img}></img>
+                    <img alt="flag" className={styles.imgCountryCard} src={props.img}></img>
                 </div>
                 <div className={styles.countryTextContainer}>
                     <h2>{props.commonName}</h2>

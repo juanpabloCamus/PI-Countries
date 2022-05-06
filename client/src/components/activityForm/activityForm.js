@@ -9,7 +9,7 @@ export function ActForm (){
 
     const dispatch = useDispatch();
     let countries = useSelector((state)=> state.countries)
-    let activities = useSelector((state)=> state.activities)
+    //let activities = useSelector((state)=> state.activities)
     
     
     useEffect(()=>{

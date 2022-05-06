@@ -10,7 +10,7 @@ const CountryDetail = (props) => {
         props.getCountryDetail(id);
     },[])
     
-    let {commonName,officialName,capital,continent,subregion,languages,area,population,currencies,flagImg,maps} = props.country;
+    let {commonName,officialName,capital,subregion,languages,area,population,currencies,flagImg,maps} = props.country;
 
     if(props.country[1]){
         return(
@@ -24,7 +24,7 @@ const CountryDetail = (props) => {
     return(
         <div className={styles.cDContainer}>
             <div className={styles.cDFirstContainer}>
-                <img src={flagImg}></img>
+                <img alt="flag" src={flagImg}></img>
                 <h1>{commonName}</h1>
                 <h2>{subregion}</h2>
             </div>
@@ -35,7 +35,7 @@ const CountryDetail = (props) => {
                 <h3>Currency: {currencies}</h3>
                 <h3>Population: {population}</h3>
                 <h3>Area: {area}</h3>
-                <button><a  target="_blank" href={maps}>See on Google Maps!</a></button>
+                <button><a  rel="noreferrer" target="_blank" href={maps}>See on Google Maps!</a></button>
             </div>
         </div>
 
