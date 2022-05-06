@@ -1,6 +1,6 @@
 import React, { useEffect, useState,} from "react";
 import Country from "./country/country";
-import { getActivities, getCountries,setCountriesContinent,orderByPopulation, orderByAlpha} from "../../../redux/actions/actions";
+import { getActivities, getCountries,filterByContinent,orderByPopulation, orderByAlpha} from "../../../redux/actions/actions";
 import { connect } from "react-redux";
 import styles from'./countriesContainer.module.css';
 import Pagination from "./Pagination";
@@ -11,7 +11,7 @@ const CountriesContainer = (props) => {
     
     const [currrentPage, setCurrentPage] = useState(1);
     const [countriesPerPage, setCountriesPerPage] = useState(10);
-    const [order,setOrder] = useState('')
+    const [order, setOrder] = useState('')
 
     useEffect(() => {
         props.getCountries()
@@ -26,60 +26,75 @@ const CountriesContainer = (props) => {
     let {search} = props.search;
     if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toString().toLowerCase()));
 
-    const selectContinent = async (e) => {
-        e.preventDefault()
-        await props.getCountries()
-        if (e.target.value === 'All') props.getCountries()
-        else props.setCountriesContinent(e.target.value);
+    const filterByContinent = async (e) => {
+        e.preventDefault();
+        await props.getCountries();
+        if (e.target.value === 'All') props.getCountries();
+        else props.filterByContinent(e.target.value);
     }
 
     const orderByAlpha = (e) => {
-        e.preventDefault()
-        props.orderByAlpha(e.target.value)
-        setOrder(`Order: Alpha ${e.target.value}`)
-        if (e.target.value === 'off') props.getCountries()
+        e.preventDefault();
+        props.orderByAlpha(e.target.value);
+        setOrder(`Order: Alpha ${e.target.value}`);
+        if (e.target.value === 'off') props.getCountries();
     }
 
     const orderByPopulation = (e) => {
-        e.preventDefault()
-        props.orderByPopulation(e.target.value)
-        setOrder(`Order: Population ${e.target.value}`)
-        if (e.target.value === 'off') props.getCountries()
+        e.preventDefault();
+        props.orderByPopulation(e.target.value);
+        setOrder(`Order: Population ${e.target.value}`);
+        if (e.target.value === 'off') props.getCountries();
+    }
+
+    const handleSort = async (e) => {
+        let current = props.countries;
+        e.preventDefault();
+        if(current.length === 250){
+            if(e.target.value === 'Aasc' || e.target.value === 'Adsc'){
+                await props.getCountries();
+                orderByAlpha(e)
+            }
+            else{
+                await props.getCountries();
+                orderByPopulation(e)
+            } 
+        }
+
+        if(e.target.value === 'Aasc' || e.target.value === 'Adsc'){
+            orderByAlpha(e)
+        }
+        else{
+            orderByPopulation(e)
+        } 
     }
 
     return(
         <div className={styles.homeContainer}>
             <Nav/>
             <div className={styles.filtersContainer}>
-                <div>
-                    <span>Continent:</span><br></br>
-                    <select onChange={e => selectContinent(e)}>
-                        <option selected>All</option>
-                        <option>Africa</option>
-                        <option>Antarctica</option>
-                        <option>Asia</option>
-                        <option>Europe</option>
-                        <option>North America</option>
-                        <option>South America</option>
-                        <option>Oceania</option>
-                    </select>
-                </div>
 
                 <div>
-                <span>Alphabetical Order:</span><br></br>
-                <select onChange={e => orderByAlpha(e)}>
-                    <option value='off'>---</option>
-                    <option value='asc'>Ascendent</option>
-                    <option value='dsc'>Descendent</option>
+                <span>Sort: </span><br></br>
+                <select onChange={(e) => handleSort(e)}>
+                    <option selected value='Aasc'>Default (A-Z)</option>
+                    <option value='Adsc'>Z-A</option>
+                    <option value='asc'>Ascendent population</option>
+                    <option value='dsc'>Descendent population</option>
                 </select>
-                </div>
 
+                </div> 
                 <div>
-                <span>Population:</span><br></br>
-                <select onChange={e => orderByPopulation(e)}>
-                    <option value='off'>---</option>
-                    <option value='asc'>Ascendent</option>
-                    <option value='dsc'>Descendent</option>
+                <span>Continent:</span><br></br>
+                <select onChange={e => filterByContinent(e)}>
+                    <option selected>All</option>
+                    <option>Africa</option>
+                    <option>Antarctica</option>
+                    <option>Asia</option>
+                    <option>Europe</option>
+                    <option>North America</option>
+                    <option>South America</option>
+                    <option>Oceania</option>
                 </select>
                 </div>
 
@@ -134,11 +149,21 @@ export const mapDispatchToProps = (dispatch) => {
     return{
       getCountries: () => dispatch(getCountries()),
       getActivities: () => dispatch(getActivities()),
-      setCountriesContinent: (continent) => dispatch(setCountriesContinent(continent)),
+      filterByContinent: (continent) => dispatch(filterByContinent(continent)),
       orderByPopulation: (payload) => dispatch(orderByPopulation(payload)),
       orderByAlpha: (payload) => dispatch(orderByAlpha(payload))
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountriesContainer);
+
+<div>
+<span>Sort: </span><br></br>
+<select onChange={(e) => e.target.value === 'Aasc' || 'Adsc' ? orderByAlpha(e) : orderByPopulation(e)}>
+    <option selected value='Aasc'>Default - A-Z</option>
+    <option value='Adsc'>Z-A</option>
+    <option value='Pasc'>Ascendent population</option>
+    <option value='Pdsc'>Descendent population</option>
+</select>
+</div> 
 

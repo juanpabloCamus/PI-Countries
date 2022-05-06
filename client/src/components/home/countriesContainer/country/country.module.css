@@ -1,11 +1,12 @@
 .countryCardContainer{
-    background-color: rgba(245, 222, 179, 0.852);
+    background-color: rgba(245, 222, 179, 0.837);
     margin: 20px;
     border: none;
     padding: 5px;
     text-align: center;
     color: black;
     border-radius: 3px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1)
 }
 
 .imgCountryContainer{

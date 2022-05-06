@@ -1,7 +1,7 @@
 import {
     GET_COUNTRIES,
     GET_COUNTRY_DETAIL,
-    SET_SEARCH, SET_COUNTRIES_CONTINENT,
+    SET_SEARCH, FILTER_BY_CONTINENT,
     GET_ACTIVITIES,
     ORDER_BY_POPULATION,
     ORDER_BY_ALPHA 
@@ -46,7 +46,7 @@ const reducer = (state = initialState, action) => {
             }
         }
 
-        case SET_COUNTRIES_CONTINENT:{
+        case FILTER_BY_CONTINENT :{
             return{
                 ...state,
                 countries: state.countries.filter(c => c.continent === action.continent)
@@ -54,9 +54,13 @@ const reducer = (state = initialState, action) => {
         }
         
         case ORDER_BY_ALPHA :{
-            return{
-                ...state,
-                countries: state.countries.reverse()
+            if (action.payload === 'Aasc'){
+                if (state.countries[0].commonName === 'Afghanistan') return {...state};
+                else return {...state, countries: state.countries.reverse()}
+            }
+            if (action.payload === 'Adsc'){
+                if (state.countries[0].commonName === 'Zimbabwe') return {...state};
+                else return {...state, countries: state.countries.reverse()}
             }
         }
 

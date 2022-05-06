@@ -9,4 +9,9 @@
     margin-top: 5px;
     border-top: 2px solid black;
     padding-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    align-content: center;
 }

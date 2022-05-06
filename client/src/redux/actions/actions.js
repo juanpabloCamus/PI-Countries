@@ -3,7 +3,7 @@ import axios from "axios";
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL';
 export const SET_SEARCH = 'SET_SEARCH';
-export const SET_COUNTRIES_CONTINENT = 'SET_COUNTRIES_CONTINENT';
+export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT ';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION';
 export const ORDER_BY_ALPHA = 'ORDER_BY_ALPHA';
@@ -44,9 +44,9 @@ export const setSearch = (search) => {
     )
 }
 
-export const setCountriesContinent = (continent) => {
+export const filterByContinent = (continent) => {
     return(
-        {type: SET_COUNTRIES_CONTINENT, continent:continent}
+        {type: FILTER_BY_CONTINENT, continent:continent}
     )
 }
 
