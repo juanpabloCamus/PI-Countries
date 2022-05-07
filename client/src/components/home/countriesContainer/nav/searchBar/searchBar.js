@@ -12,7 +12,7 @@ export function SeacrhBar (props) {
 
     return(
         <div className={styles.searchBarContainer}>
-            <input className={styles.searchBarInput} placeholder='Search by name...' type='text' name="search" onChange={handleChange}></input>
+            <input className={styles.searchBarInput} autoComplete='off' placeholder='Search by name...' type='text' name="search" onChange={handleChange}></input>
         </div>  
     )
 }

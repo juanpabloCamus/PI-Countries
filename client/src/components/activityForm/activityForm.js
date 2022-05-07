@@ -3,7 +3,7 @@ import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getCountries, getActivities } from "../../redux/actions/actions";
 import styles from './activityForm.module.css';
-import BackButton from '../backButton/backButton'
+import BackButton from '../backButton/backButton';
 
 export function ActForm (){
 
@@ -24,16 +24,21 @@ export function ActForm (){
     });
 
     let [selected, setSelected] = useState([]);
-
+    let [selectedNames, setSelectedNames] = useState([]);
+   
     let [error, setError] = useState({
-        name: false,
-        difficulty: false,
-        duration: false,
-        season:false,
-        countryId: false
+        name: true,
+        difficulty: true,
+        duration: true,
+        season:true,
+        countryId: true
     });
 
     function handleSelect(e){
+        let names = [];
+        names = countries.filter((c) => c.id === e.target.value)
+        names = names.map(c => c.commonName)
+        setSelectedNames(selectedNames.concat(names));
         if(e.target.value !== '---') setSelected(selected.concat(e.target.value))
         if(e.target.name === 'countryId'){
             if (selected.length <  0) return setError({...error, countryId: true})
@@ -41,11 +46,19 @@ export function ActForm (){
             else return setError({...error, countryId: false});
         }
     };
-    
-    function handleErrors(e){
 
+    function deleteSelected(e){
+        let target = (Object.values(e.target)[1].children);
+        setSelectedNames(selectedNames.filter(n => n !== Object.values(e.target)[1].children));
+        let targetId = (countries.find(c => c.commonName === target));
+        targetId = targetId.id;
+        setSelected(selected.filter(i => i !== targetId))
+    }
+
+    function handleErrors(e){
+        
         if(e.target.name === 'name'){
-            console.log(e.target.value);
+            
             if (!(/^[a-zA-Z\s]{4,30}$/.test(e.target.value))) return setError({...error, name: true});
             else return setError({...error, name: false});
         }
@@ -69,7 +82,7 @@ export function ActForm (){
     }
 
     function handleChange(e){
-        console.log('handelchange');
+        e.preventDefault();
         handleErrors(e);
         setActivity({
             ...activity,
@@ -78,11 +91,9 @@ export function ActForm (){
     };
 
     async function handleSubmit(e){
-        console.log('handlesubmit');
         e.preventDefault()
-        
-            
-            let post = activity;
+        let post = activity;
+        if(error.name === false && error.difficulty === false && error.duration === false && error.season === false && error.countryId  === false){
             post.name = post.name[0];
             post.countryId = selected;
             post.duration = post.duration[0]
@@ -90,9 +101,9 @@ export function ActForm (){
             if (Array.isArray(post.season)) post.season = post.season[0]
             await axios.post('http://localhost:3001/activities',{post})
             .then(resp => alert(resp.data))
-            .catch(err => alert(err.response.data))
-        
-        setSelected([])
+            .catch(err => {alert(err.response.data); console.log(err);})
+            setSelected([])
+        }
     };
     
     return(
@@ -107,15 +118,16 @@ export function ActForm (){
             
                 <div className={styles.divName}>
                     <label>Add Activity</label> <br></br>
-                    <input className={styles.inputName} key='name' autoComplete="off" type='text' name={'name'} placeholder="Activity name..." onChange={handleChange}></input>
+                    <input className={styles.inputName} key='name' autoComplete="off" type='text' name={'name'} placeholder="Activity name..." onChange={handleChange} ></input>
                     {error.name ? <span className={styles.errors}>Activity must be between 4 and 30 characters.<br></br>Numbers and alphanumerics are not allowed.</span> : null}
                 </div>
 
                 <div className={styles.divProps}>
                     <div>
                         <label>Difficulty: </label>
-                        <select key="difficultySelect" required name={'difficulty'} onChange={handleChange}>
-                            <option value = {1} selected>1 - Easy</option>
+                        <select key="difficultySelect"  name={'difficulty'} onChange={handleChange}>
+                        <option disabled selected>---</option>
+                            <option value = {1} >1 - Easy</option>
                             <option value = {2} >2 - Light</option>
                             <option value = {3} >3 - Medium</option>
                             <option value = {4} >4 - Hard</option>
@@ -126,13 +138,14 @@ export function ActForm (){
 
                     <div>
                         <label>Duration: </label>
-                        <input key="durationInput" defaultValue="1" required type='number' min='1' max='24' name={'duration'} onChange={handleChange}></input><label> Hours</label>
+                        <input className={styles.dur} key="durationInput" defaultValue="0"  type='number'  name={'duration'} onChange={handleChange}></input><label> Hours</label>
                         {error.duration ? <span className={styles.errors}><br></br>Duration must be between 1 and 24 hours</span> : null}
                     </div>
                     <div>
                         <label>Season: </label>
-                        <select key="seasonSelect" required onChange={handleChange} name={'season'}>
-                            <option selected value='Indifferent'>Indifferent</option>
+                        <select key="seasonSelect"  onChange={handleChange} name={'season'}>
+                            <option selected disabled>---</option>
+                            <option value='Indifferent'>Indifferent</option>
                             <option value='Autumn'>Autumn</option>
                             <option value='Winter'>Winter</option>
                             <option value='Spring'>Spring</option>
@@ -144,7 +157,7 @@ export function ActForm (){
 
                 <div className={styles.divCountries}>
                 <label>Country / Countries: </label> <br></br>
-                <select key="countriesSelect" required name={'countryId'} onChange={(e) => {handleSelect(e);}}>
+                <select key="countriesSelect"  name={'countryId'} onChange={(e) => {handleSelect(e);}}>
                     <option selected disabled>---</option>
                     {countries.map(c => (<option key={c.id} value={c.id}>{c.commonName}</option>))}
                 </select>
@@ -153,7 +166,7 @@ export function ActForm (){
 
                 <div>
                 <label>Selected: </label>
-                <label>{' ' + selected}</label>
+                {selectedNames.map( n => (<button className={styles.selectedButton} key={n} onClick={deleteSelected}>{n}</button>))}
                 </div>
 
                 <button className={styles.sendButton} type="submit" name={'name'}>Send</button>
@@ -166,32 +179,10 @@ export function ActForm (){
 
 export default ActForm;
 
-    //  let activities = useSelector((state)=> state.activities)
-    // let [actName, setactName] = useState([]);
 
-    // async function addActDiv(){
-    //     let acts = await dispatch(getActivities());
-    //     acts = acts.payload;    
-    //     let actNames = [];
-    //     let countriesNames = []
-    //     for (let i = 0; i < acts.length; i++) {
-    //         actNames.push(acts[i].name);
-    //         setactName(actName.concat(actNames))
-    //     }
-        
-    //     for (let i = 0; i < acts.length; i++) {
-    //         countriesNames.push(acts[i].Countries)
-    //     }
-    //     console.log(countriesNames);
-    // }
-
-
-
-    //        <div>
-    //             Activities Created:
-    //                 <div>
-    //                     {actName.map(a => (<label key={a}>{a}<br></br></label>))}
-    //                 </div>
-    //         </div> 
-
-    // (!(/^[a-zA-Z\s]{4,30}$/.test(e.target.value)))
+// let [selectedNames, setSelectedNames] = useState([]);
+// function deleteSelected(e){
+//     let target = (Object.values(e.target)[1].children);
+//     target = (selectedNames.filter(n => n !== Object.values(e.target)[1].children));
+//     console.log(target);
+// }
