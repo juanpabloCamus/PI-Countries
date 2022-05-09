@@ -18,7 +18,7 @@ export function ActForm (){
     let [activity, setActivity] = useState({
        name: '',
        difficulty: 1,
-       duration: 1,
+       duration: 0,
        season: 'Indifferent',
        countryId: []
     });
@@ -92,6 +92,7 @@ export function ActForm (){
 
     async function handleSubmit(e){
         e.preventDefault()
+        if(selected.length < 1) return setError({...error, countryId: true});
         let post = activity;
         if(error.name === false && error.difficulty === false && error.duration === false && error.season === false && error.countryId  === false){
             post.name = post.name[0];
@@ -102,7 +103,8 @@ export function ActForm (){
             await axios.post('http://localhost:3001/activities',{post})
             .then(resp => alert(resp.data))
             .catch(err => {alert(err.response.data); console.log(err);})
-            setSelected([])
+            setSelected([]);
+            setSelectedNames([]);
         }
     };
     
@@ -178,11 +180,3 @@ export function ActForm (){
 }
 
 export default ActForm;
-
-
-// let [selectedNames, setSelectedNames] = useState([]);
-// function deleteSelected(e){
-//     let target = (Object.values(e.target)[1].children);
-//     target = (selectedNames.filter(n => n !== Object.values(e.target)[1].children));
-//     console.log(target);
-// }

@@ -4,7 +4,8 @@ import {
     SET_SEARCH, FILTER_BY_CONTINENT,
     GET_ACTIVITIES,
     ORDER_BY_POPULATION,
-    ORDER_BY_ALPHA 
+    ORDER_BY_ALPHA,
+    FILTER_BY_ACTIVITY 
 } from "../actions/actions";
 
 const initialState = {
@@ -74,6 +75,14 @@ const reducer = (state = initialState, action) => {
                 countries: sort,
             }
         }
+
+        case FILTER_BY_ACTIVITY:{
+            let act = state.activities.filter(a => a.name === action.payload);
+            return{
+                ...state,
+                countries:act[0].Countries
+            }  
+        }   
 
         default: return {...state}
     }

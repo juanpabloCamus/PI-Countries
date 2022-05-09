@@ -1,11 +1,10 @@
 import React, { useEffect, useState,} from "react";
 import Country from "./country/country";
-import { getActivities, getCountries,filterByContinent,orderByPopulation, orderByAlpha} from "../../../redux/actions/actions";
+import { getActivities, getCountries,filterByContinent,orderByPopulation, orderByAlpha, filterByActivity} from "../../../redux/actions/actions";
 import { connect } from "react-redux";
 import styles from'./countriesContainer.module.css';
 import Pagination from "./Pagination";
 import Nav from './nav/nav';
-
 
 const CountriesContainer = (props) => {
     
@@ -31,6 +30,12 @@ const CountriesContainer = (props) => {
         await props.getCountries();
         if (e.target.value === 'All') props.getCountries();
         else props.filterByContinent(e.target.value);
+    }
+
+    const filterByActivity = (e) => {
+        if(e.target.value === '---') return props.getCountries()
+        e.preventDefault();
+        props.filterByActivity(e.target.value)
     }
 
     const orderByAlpha = (e) => {
@@ -100,15 +105,15 @@ const CountriesContainer = (props) => {
 
                 <div>
                 <span>Activity: </span><br></br>
-                <select>
+                <select onChange={e => filterByActivity(e)}>
                     <option selected>---</option>
-                    {props.activities.map(a => (<option key={a.id}>{a.name}</option>))}
+                    {props.activities.map(a => (<option value={a.name} key={a.id}>{a.name}</option>))}
                 </select>
                 </div>
 
             </div>
 
-            <div  className={styles.countriesContainer}>
+            <div className={styles.countriesContainer}>
                 {currrentCountries.map(c => (
                     <div>
                         <Country
@@ -151,19 +156,12 @@ export const mapDispatchToProps = (dispatch) => {
       getActivities: () => dispatch(getActivities()),
       filterByContinent: (continent) => dispatch(filterByContinent(continent)),
       orderByPopulation: (payload) => dispatch(orderByPopulation(payload)),
-      orderByAlpha: (payload) => dispatch(orderByAlpha(payload))
+      orderByAlpha: (payload) => dispatch(orderByAlpha(payload)),
+      filterByActivity: (payload) => dispatch(filterByActivity(payload))
     }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountriesContainer);
 
-<div>
-<span>Sort: </span><br></br>
-<select onChange={(e) => e.target.value === 'Aasc' || 'Adsc' ? orderByAlpha(e) : orderByPopulation(e)}>
-    <option selected value='Aasc'>Default - A-Z</option>
-    <option value='Adsc'>Z-A</option>
-    <option value='Pasc'>Ascendent population</option>
-    <option value='Pdsc'>Descendent population</option>
-</select>
-</div> 
+
 

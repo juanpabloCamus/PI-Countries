@@ -3,10 +3,11 @@ import axios from "axios";
 export const GET_COUNTRIES = 'GET_COUNTRIES';
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL';
 export const SET_SEARCH = 'SET_SEARCH';
-export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT ';
+export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT';
 export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION';
 export const ORDER_BY_ALPHA = 'ORDER_BY_ALPHA';
+export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
 
 export const getCountries = () => {
     return async function(dispatch){
@@ -62,3 +63,8 @@ export const orderByAlpha = (payload) => {
     )
 }
 
+export const filterByActivity = (payload) => {
+    return {
+        type: FILTER_BY_ACTIVITY, payload: payload
+    }
+}
