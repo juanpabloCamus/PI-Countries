@@ -100,7 +100,7 @@ export function ActForm (){
             post.duration = post.duration[0]
             post.difficulty = post.difficulty[0]
             if (Array.isArray(post.season)) post.season = post.season[0]
-            await axios.post('/activities',{post})
+            await axios.post('http://localhost:3001/activities',{post})
             .then(resp => alert(resp.data))
             .catch(err => {alert(err.response.data); console.log(err);})
             setSelected([]);

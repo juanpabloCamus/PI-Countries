@@ -12,7 +12,7 @@ export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
 export const getCountries = () => {
     return async function(dispatch){
         return(
-            axios.get('/countries')
+            axios('http://localhost:3001/countries')
             .then(resp => resp.data)
             .then(data => dispatch({type: GET_COUNTRIES, payload: data}))
         )
@@ -22,7 +22,7 @@ export const getCountries = () => {
 export const getCountryDetail = (id) => {
     return async function(dispatch){
         return(
-            axios.get(`/countries/${id}`)
+            fetch(`http://localhost:3001/countries/${id}`)
             .then(resp => resp.json())
             .then(data => dispatch({type: GET_COUNTRY_DETAIL, payload: data}))
         )
@@ -32,7 +32,7 @@ export const getCountryDetail = (id) => {
 export const getActivities = () => {
     return async function(dispatch){
         return(
-            axios.get(`/activities`)
+            fetch(`http://localhost:3001/activities`)
             .then(resp => resp.json())
             .then(data => dispatch({type: GET_ACTIVITIES, payload: data}))
         )
