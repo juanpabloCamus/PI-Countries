@@ -1,12 +1,47 @@
+/* 
 .countryCardContainer{
-    background-color: rgba(245, 222, 179, 0.837);
+    background: #eacda3;  
+    background: -webkit-linear-gradient(to left, #d6ae7b, #eacda3);
+    background: linear-gradient(to left, #d6ae7b, #eacda3); 
     margin: 20px;
     border: none;
     padding: 5px;
     text-align: center;
     color: black;
     border-radius: 3px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1)
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1);
+    transition: all 0.5s ;
+}
+.countryCardContainer:hover{
+    background: rgba(172, 17, 17, 0.85); 
+    background: -webkit-linear-gradient(to right, #93291E, #BC2537); 
+    background: linear-gradient(to right, #93291E, #BC2537); 
+    color: rgba(245, 222, 179, 0.857);
+    box-shadow: 0 16px 32px 0 rgba(0,0,0,0.2), 0 12px 40px 0 rgba(0,0,0,1);
+    font-size: large;
+
+} */
+
+.countryCardContainer{
+    background: #eacda3;  
+    background: -webkit-linear-gradient(to left, #d6ae7b, #eacda3);
+    background: linear-gradient(to left, #d6ae7b, #eacda3); 
+    margin: 20px;
+    border: none;
+    padding: 5px;
+    text-align: center;
+    color: black;
+    border-radius: 3px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1);
+    transition: all 0.5s ;
+}
+.countryCardContainer:hover{
+    background: #eacda3;  
+    background: -webkit-linear-gradient(to left, #d6ae7b, #eacda3);
+    background: linear-gradient(to left, #fcce91, #ffdfb1); 
+    font-size: large;
+    box-shadow: 0 32px 64px 0 rgba(0,0,0,0.2), 0 24px 80px 0 rgba(0,0,0,1);
+
 }
 
 .imgCountryContainer{
@@ -17,6 +52,12 @@
     height: 200px;
     width: 320px;
     object-fit: cover;
+    border-radius: 3px;
+}
+.link{
+    background-color: #fff;
+    text-decoration: none;
 }
 
 /* rgba(245, 222, 179, 0.852); */
+/* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,1) */

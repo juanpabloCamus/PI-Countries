@@ -14,6 +14,7 @@ const LandingPage = (props) => {
             <Link to = {'/home'} >
                 <button className={styles.lpButton}>Explore The World!</button>
             </Link>
+            <h6  className={styles.by}>By Juan Pablo Camus © <br></br>in concept of PI (Henry Individual Project)</h6>
         </div>
     )
 }

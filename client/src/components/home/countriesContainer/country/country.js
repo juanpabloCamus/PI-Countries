@@ -6,7 +6,7 @@ const Country = (props) => {
 
     
     return(
-        <Link to={`/home/${props.id}`}>
+        <Link className={styles.link} to={`/home/${props.id}`}>
             <div className={styles.countryCardContainer}>
                 <div className={styles.imgCountryContainer}>
                     <img alt="flag" className={styles.imgCountryCard} src={props.img}></img>

@@ -1,7 +1,7 @@
 import React from "react";
 import CountriesContainer from "./countriesContainer/countriesContainer";
 
-const Home = (props) => {
+const Home = () => {
     return(
         <div>
             <CountriesContainer/>

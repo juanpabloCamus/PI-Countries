@@ -11,9 +11,9 @@ function Pagination({countriesPerPage, totalCountries, paginate}){
     return(
         <div>
             <ul className={styles.pagContainer}>
-                {pageNumbers.map(n => (
-                    <div key={n}>
-                        <button onClick={() => {paginate(n)}}>
+                {pageNumbers && pageNumbers.map(n => (
+                    <div className={styles.divPagination} key={n}>
+                        <button className={styles.pagButton} onClick={() => {paginate(n)}}>
                             {n}
                         </button>
                     </div>

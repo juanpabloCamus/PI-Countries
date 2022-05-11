@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getCountryDetail } from "../../../../../redux/actions/actions";
 import styles from './countryDetail.module.css';
 import BackButton from "../../../../backButton/backButton";
+import Loading from "../../../../loading/Loading";
 
 const CountryDetail = (props) => {
     const {id} = useParams();
@@ -12,22 +13,24 @@ const CountryDetail = (props) => {
     },[])
     
     let {commonName,officialName,capital,subregion,languages,area,population,currencies,flagImg,maps} = props.country;
-
+    
     if(props.country[1]){
+        if(!props.country[0].id) return(<Loading></Loading>)
         let acts = [];
         for (let i = 0; i < props.country[1].length; i++) {
             acts.push(props.country[1][i]);
         }
         let {commonName,officialName,capital,subregion,languages,area,population,currencies,flagImg,maps} = props.country[0];
-        console.log(acts);
+        
         return(
             <div className={styles.cardContainer}>
+            <div className={styles.backButton}>
+                <BackButton/>
+            </div>
             <div className={styles.cDContainer}>
-                <div className={styles.backButton}>
-                    <BackButton/>
-                </div>
                 <div className={styles.cDFirstContainer}>
-                    <img alt="flag" src={flagImg}></img>
+                    <h2 className={styles.id}>{id}</h2>
+                    <img className={styles.flagImg} alt="flag" src={flagImg}></img>
                     <h1>{commonName}</h1>
                     <h2>{subregion}</h2>
                 </div>
@@ -43,14 +46,14 @@ const CountryDetail = (props) => {
                     </div>
                 </div>
             </div>
-            <h2>Activities: </h2>
+            <h2 className={styles.acth2}>Activities: </h2>
             <div className={styles.actsContainer}>
                 
                 {acts.map(a => (
                     <div className={styles.actContainer}>
-                    <h3>{a.name}</h3>
+                    <h3 className={styles.actName}>{a.name}</h3>
                     <h4>Difficulty: {a.difficulty}</h4>
-                    <h4>Duration: {a.duration}</h4>
+                    <h4>Duration: {a.duration} hours</h4>
                     <h4>Season: {a.season}</h4>
                     </div>
                 ))}
@@ -60,14 +63,15 @@ const CountryDetail = (props) => {
         </div>
         )
     }
-
+    if(!props.country.id) return(<Loading></Loading>)
     return(
-        <div>
+        <div className={styles.pageContainer}>
+            <div className={styles.backButton}>
+                <BackButton/>
+            </div>
         <div className={styles.cDContainer}>
-                <div className={styles.backButton}>
-                    <BackButton/>
-                </div>
             <div className={styles.cDFirstContainer}>
+                <h2 className={styles.id}>{id}</h2>
                 <img alt="flag" src={flagImg}></img>
                 <h1>{commonName}</h1>
                 <h2>{subregion}</h2>
@@ -84,7 +88,7 @@ const CountryDetail = (props) => {
                 </div>
             </div>
         </div>
-            <h2>This country has no activities</h2>
+            <h2 className={styles.acth2}>This country doesn't have activities</h2>
         </div>
 
     )

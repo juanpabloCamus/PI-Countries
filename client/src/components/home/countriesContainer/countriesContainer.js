@@ -5,26 +5,31 @@ import { connect } from "react-redux";
 import styles from'./countriesContainer.module.css';
 import Pagination from "./Pagination";
 import Nav from './nav/nav';
+import Loading from "../../loading/Loading";
 
 const CountriesContainer = (props) => {
-    
-    const [currrentPage, setCurrentPage] = useState(1);
-    const [countriesPerPage, setCountriesPerPage] = useState(10);
-    const [order, setOrder] = useState('')
 
     useEffect(() => {
         props.getCountries()
         props.getActivities()
     }, [])
 
+    const [order, setOrder] = useState('');
+
+    const [currrentPage, setCurrentPage] = useState(1);
+    const [countriesPerPage, setCountriesPerPage] = useState(10);
     const indexOfLastCountry = currrentPage * countriesPerPage; 
     const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
     let currrentCountries = props.countries.slice(indexOfFirstCountry, indexOfLastCountry);
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    const paginate = (pageNumber) => {
+        setCurrentPage(pageNumber);
+        // if(pageNumber === 1) setCountriesPerPage(9)
+        // else setCountriesPerPage(10)
+    }   
 
     let {search} = props.search;
-    if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toString().toLowerCase()));
-
+    if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toLowerCase()));
+    
     const filterByContinent = async (e) => {
         e.preventDefault();
         await props.getCountries();
@@ -74,6 +79,8 @@ const CountriesContainer = (props) => {
         } 
     }
 
+    if(props.countries.length === 0) return(<Loading></Loading>)
+
     return(
         <div className={styles.homeContainer}>
             <Nav/>
@@ -113,6 +120,7 @@ const CountriesContainer = (props) => {
 
             </div>
 
+            
             <div className={styles.countriesContainer}>
                 {currrentCountries.map(c => (
                     <div>
@@ -134,7 +142,7 @@ const CountriesContainer = (props) => {
                     </div>
                 ))}
             </div>
-
+            
             <Pagination countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
             
         </div>     

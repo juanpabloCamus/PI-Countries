@@ -2,7 +2,7 @@ const { Router } = require('express');
 const {Country, Country_Activity} = require('../db');
 const router = Router();
 
-//Get all countries or get all countries by name
+//Get all countries or get a country by name
 router.get('/',async (req, res) => {
     let {name} = req.query;
     if(name){

@@ -1,6 +1,8 @@
+.pageContainer{
+    margin-top: 80px;
+}
 
 .cDContainer{
-    margin-top: 180px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -11,18 +13,26 @@
     padding: 20px;
     text-align: center;
     margin-bottom: 10px;
+    max-width: 1000px;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,1);
 }
 
 .cDFirstContainer{
     margin-top: 25px;
-    text-align: center;
+}
+
+.cDFirstContainer img{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,1);
+}
+.id{
     color:rgba(245, 222, 179, 0.852); 
 }
 
 .backButton img{
-    position: absolute;
-    left: 30px;
-    top:100px;
+    margin-bottom: 20px;
     width: 60px;
     height: 60px;
 }
@@ -71,5 +81,17 @@
     text-align: center;
     max-width: 500px;
     padding: 20px;
+    transition: 0.5s;
 }
 
+.actContainer:hover{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,1);
+}
+
+.acth2{
+    text-align: center;
+}
+
+.actName{
+    color:rgba(245, 222, 179, 0.852);
+}

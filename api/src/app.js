@@ -58,6 +58,7 @@ async function load(){
     }
   }
 }
+
 load()
 
 server.use('/', routes);

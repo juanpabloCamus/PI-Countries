@@ -1,7 +1,7 @@
 const axios = require('axios');
 const url = 'https://restcountries.com/v3/all';
 
-
+//Get required info from the API
 const getParsedApi = async () => {
     let api = await axios(url);
     api = api.data.map((c) => {

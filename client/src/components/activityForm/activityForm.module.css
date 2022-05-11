@@ -1,6 +1,9 @@
 .formContainer{
     background-color: rgba(172, 17, 17, 0.85);
     border-radius: 5px;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 

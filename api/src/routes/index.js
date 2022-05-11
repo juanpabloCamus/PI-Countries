@@ -8,8 +8,9 @@ const activities = require('./activities')
 const router = Router();
 
 router.get('/', (req, res) => {
-    res.send('home')
+    res.send('Home, in /countries or /activities you can get info!')
 })
+
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.use('/countries', countries);
