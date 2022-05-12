@@ -12,7 +12,7 @@ const Country = (props) => {
                     <img alt="flag" className={styles.imgCountryCard} src={props.img}></img>
                 </div>
                 <div className={styles.countryTextContainer}>
-                    <h2>{props.commonName}</h2>
+                    <h2 className={styles.countryName}>{props.commonName}</h2>
                     <h3>{props.continent}</h3>
                 </div>
             </div>

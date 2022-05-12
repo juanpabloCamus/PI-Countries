@@ -80,7 +80,7 @@ const Home = (props) => {
 
     return(
         <div className={styles.homeContainer}>
-            <Nav setCurrentPage={setCurrentPage}/>
+            <Nav key='nav' setCurrentPage={setCurrentPage}/>
             <div className={styles.filtersContainer}>
 
                 <div>
@@ -140,7 +140,7 @@ const Home = (props) => {
                 ))}
             </div>
             
-            <Pagination setCurrentPage={setCurrentPage} currrentPage={currrentPage} countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
+            <Pagination key='pag' setCurrentPage={setCurrentPage} currrentPage={currrentPage} countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
             
         </div>     
     )

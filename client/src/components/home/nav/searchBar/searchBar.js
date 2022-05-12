@@ -15,6 +15,7 @@ export function SeacrhBar (props) {
     function handleSubmit(){
         props.setSearch(search);
         props.setCurrentPage(1);
+        setSearch('')
     }
 
     return(
