@@ -40,7 +40,7 @@ const CountryDetail = (props) => {
                     <h3>Language: {languages}</h3>
                     <h3>Currency: {currencies}</h3>
                     <h3>Population: {population}</h3>
-                    <h3>Area: {area}</h3>
+                    <h3>Area: {area} km2</h3>
                     <div className={styles.buttonContainer}>
                         <a className={styles.mapsButton} rel="noreferrer" target="_blank" href={maps}>See on Google Maps!</a>
                     </div>
@@ -82,7 +82,7 @@ const CountryDetail = (props) => {
                 <h3>Language: {languages}</h3>
                 <h3>Currency: {currencies}</h3>
                 <h3>Population: {population}</h3>
-                <h3>Area: {area}</h3>
+                <h3>Area: {area} km2</h3>
                 <div className={styles.buttonContainer}>
                 <a className={styles.mapsButton} rel="noreferrer" target="_blank" href={maps}>See on Google Maps!</a>
                 </div>

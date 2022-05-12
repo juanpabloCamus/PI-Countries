@@ -1,15 +1,18 @@
 const { Router } = require('express');
 const {Country, Country_Activity} = require('../db');
 const router = Router();
+const { Op } = require('sequelize');
+
 
 //Get all countries or get a country by name
 router.get('/',async (req, res) => {
     let {name} = req.query;
     if(name){
+        name = name.toLowerCase();
         name = name.charAt(0).toUpperCase() + name.slice(1);
         try{    
-            let country = await Country.findOne({
-                where: {commonName: name}
+            let country = await Country.findAll({
+                where: {commonName: {[Op.substring]:name}}
             });
             if (country) return res.send(country);
             else return res.status(400).send('Country not found');

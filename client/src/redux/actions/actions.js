@@ -40,9 +40,13 @@ export const getActivities = () => {
 }
 
 export const setSearch = (search) => {
-    return(
-        {type: SET_SEARCH, search:search}
-    )
+    return async function(dispatch){
+        return(
+            axios(`http://localhost:3001/countries?name=${search}`)
+            .then(resp => resp.data)
+            .then(data => dispatch({type: SET_SEARCH, payload: data}))
+        )
+    }
 }
 
 export const filterByContinent = (continent) => {

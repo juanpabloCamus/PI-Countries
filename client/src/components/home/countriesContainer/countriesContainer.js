@@ -26,9 +26,6 @@ const CountriesContainer = (props) => {
         // if(pageNumber === 1) setCountriesPerPage(9)
         // else setCountriesPerPage(10)
     }   
-
-    let {search} = props.search;
-    if (search.length > 1) currrentCountries = props.countries.filter(c => c.commonName.toLowerCase().includes(search.toLowerCase()));
     
     const filterByContinent = async (e) => {
         e.preventDefault();
@@ -153,7 +150,6 @@ export const mapStateToProps = (state) => {
     return{
         countries: state.countries,
         activities: state.activities,
-        search: state.search,
         order: state.order
     }
 }

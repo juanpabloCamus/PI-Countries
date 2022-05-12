@@ -1,4 +1,17 @@
 .navContainer{
     display: grid;
     grid-template-columns: 25% auto 25%;
+    gap: 20px;
+}
+
+@media (max-width: 450px) {
+    .navContainer{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+        flex-direction: column;
+        gap:0px
+    }
+   
 }

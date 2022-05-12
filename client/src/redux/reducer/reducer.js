@@ -12,7 +12,6 @@ const initialState = {
     countries: [],
     country: {},
     activities: [],
-    search: '',
     order: ''
 };
 
@@ -43,7 +42,7 @@ const reducer = (state = initialState, action) => {
         case SET_SEARCH:{
             return{
                 ...state,
-                search: action.search
+                countries: action.payload
             }
         }
 
