@@ -8,6 +8,7 @@ export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const ORDER_BY_POPULATION = 'ORDER_BY_POPULATION';
 export const ORDER_BY_ALPHA = 'ORDER_BY_ALPHA';
 export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY';
+export const CLEAN_COUNTRY_DETAIL = 'CLEAN_COUNTRY_DETAIL'; 
 
 export const getCountries = () => {
     return async function(dispatch){
@@ -45,6 +46,7 @@ export const setSearch = (search) => {
             axios(`http://localhost:3001/countries?name=${search}`)
             .then(resp => resp.data)
             .then(data => dispatch({type: SET_SEARCH, payload: data}))
+            .catch(resp => alert(resp.response.data))
         )
     }
 }
@@ -70,5 +72,11 @@ export const orderByAlpha = (payload) => {
 export const filterByActivity = (payload) => {
     return {
         type: FILTER_BY_ACTIVITY, payload: payload
+    }
+}
+
+export const cleanCountryDetail = () => {
+    return {
+        type: CLEAN_COUNTRY_DETAIL
     }
 }

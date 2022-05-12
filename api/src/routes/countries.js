@@ -14,6 +14,7 @@ router.get('/',async (req, res) => {
             let country = await Country.findAll({
                 where: {commonName: {[Op.substring]:name}}
             });
+            if(country.length === 0) return res.status(400).send('Country not found')
             if (country) return res.send(country);
             else return res.status(400).send('Country not found');
         }catch(e){

@@ -123,5 +123,17 @@ select{
     width: 40px;
 }
 
+@media (max-width: 480px) {
+    .form{
+        display: flex;
+        flex-direction: column;
+    
+    }
 
-/* rgb(172, 17, 17) */
+    .divProps{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+}

@@ -19,4 +19,11 @@ code {
     monospace;
 }
 
+
+@media (max-width: 480px) {
+  body {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
 /* Geometos Neue Black otf (900) font */

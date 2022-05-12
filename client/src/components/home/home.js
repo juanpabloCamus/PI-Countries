@@ -80,12 +80,12 @@ const Home = (props) => {
 
     return(
         <div className={styles.homeContainer}>
-            <Nav/>
+            <Nav setCurrentPage={setCurrentPage}/>
             <div className={styles.filtersContainer}>
 
                 <div>
                 <span>Sort: </span><br></br>
-                <select onChange={(e) => handleSort(e)}>
+                <select className={styles.filters} onChange={(e) => handleSort(e)}>
                     <option selected value='Aasc'>Default (A-Z)</option>
                     <option value='Adsc'>Z-A</option>
                     <option value='asc'>Ascendent population</option>
@@ -95,7 +95,7 @@ const Home = (props) => {
                 </div> 
                 <div>
                 <span>Continent:</span><br></br>
-                <select onChange={e => filterByContinent(e)}>
+                <select className={styles.filters} onChange={e => filterByContinent(e)}>
                     <option selected>All</option>
                     <option>Africa</option>
                     <option>Antarctica</option>
@@ -109,7 +109,7 @@ const Home = (props) => {
 
                 <div>
                 <span>Activity: </span><br></br>
-                <select onChange={e => filterByActivity(e)}>
+                <select className={styles.filters} onChange={e => filterByActivity(e)}>
                     <option selected>---</option>
                     {props.activities.map(a => (<option value={a.name} key={a.id}>{a.name}</option>))}
                 </select>

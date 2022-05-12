@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from './Pagination.module.css';
-import img from '../../assets/arrow1.png'
+
 
 function Pagination({setCurrentPage,countriesPerPage, totalCountries, paginate, currrentPage}){
 
@@ -16,7 +16,7 @@ function Pagination({setCurrentPage,countriesPerPage, totalCountries, paginate, 
 
     currentPageNumbers = pageNumbers.slice(prev, next);
 
-    function handlePrev(e){
+    function handlePrev(){
         if(currrentPage === 0 || currrentPage === 5 || currrentPage === 10 || currrentPage === 15 || currrentPage === 20){
             if (!(prev === 0)){
                 setPrev(prev - 5);
@@ -28,7 +28,7 @@ function Pagination({setCurrentPage,countriesPerPage, totalCountries, paginate, 
 
     }
 
-    function handleNext(e){
+    function handleNext(){
         if(currrentPage === 5 || currrentPage === 10 || currrentPage === 15 || currrentPage === 20 || currrentPage === 25){
             if (!(next === 25)){
                 setPrev(prev + 5);
@@ -44,7 +44,7 @@ function Pagination({setCurrentPage,countriesPerPage, totalCountries, paginate, 
             <label className={styles.currentPage}>{currrentPage}/25</label>
             <ul className={styles.pagContainer}>
             <div className={styles.directionContainer}>
-            <button onClick={()=> {if (!(prev === 0)){setPrev(prev - 5);setNext(next - 5);}}}className={styles.currentButton}>{'<<'}</button>
+            <button onClick={()=> {if (!(prev === 0)){setPrev(prev - 5);setNext(next - 5);if(currrentPage > 5) setCurrentPage(currrentPage - 5)}}}className={styles.currentButton}>{'<<'}</button>
             <button onClick={handlePrev} className={styles.currentButton}>{'<'}</button>
             </div>
                 {pageNumbers && currentPageNumbers.map(n => (
@@ -56,7 +56,7 @@ function Pagination({setCurrentPage,countriesPerPage, totalCountries, paginate, 
                 ))}
                 <div className={styles.directionContainer}>
                 <button onClick={handleNext} className={styles.currentButton}>{'>'}</button>
-                <button onClick={()=>{if (!(next === 25)){setPrev(prev + 5);setNext(next + 5);}}} className={styles.currentButton}>{'>>'}</button>
+                <button onClick={()=>{if (!(next === 25)){setPrev(prev + 5);setNext(next + 5);if(currrentPage < 25) setCurrentPage(currrentPage + 5)}}} className={styles.currentButton}>{'>>'}</button>
                 </div>
             </ul>
         </div>

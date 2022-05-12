@@ -5,7 +5,8 @@ import {
     GET_ACTIVITIES,
     ORDER_BY_POPULATION,
     ORDER_BY_ALPHA,
-    FILTER_BY_ACTIVITY 
+    FILTER_BY_ACTIVITY,
+    CLEAN_COUNTRY_DETAIL 
 } from "../actions/actions";
 
 const initialState = {
@@ -81,7 +82,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 countries:act[0].Countries
             }  
-        }   
+        }  
+        
+        case CLEAN_COUNTRY_DETAIL:{
+            return{
+                ...state,
+                country: {}
+            }
+        }
 
         default: return {...state}
     }

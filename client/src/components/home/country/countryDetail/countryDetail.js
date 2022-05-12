@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getCountryDetail } from "../../../../redux/actions/actions";
+import { cleanCountryDetail, getCountryDetail } from "../../../../redux/actions/actions";
 import styles from './countryDetail.module.css';
 import BackButton from "../../../backButton/backButton";
 import Loading from "../../../loading/Loading";
@@ -11,6 +11,10 @@ const CountryDetail = (props) => {
     useEffect(()=>{
         props.getCountryDetail(id);
     },[])
+
+    useEffect(()=>{
+        return(props.cleanCountryDetail())
+    }, [])
     
     let {commonName,officialName,capital,subregion,languages,area,population,currencies,flagImg,maps} = props.country;
     
@@ -104,7 +108,8 @@ function mapStateToProps(state){
 
 export const mapDispatchToProps = (dispatch) => {
     return{
-      getCountryDetail: id => dispatch(getCountryDetail(id))
+      getCountryDetail: id => dispatch(getCountryDetail(id)),
+      cleanCountryDetail: () => dispatch(cleanCountryDetail())
     }
 }
 

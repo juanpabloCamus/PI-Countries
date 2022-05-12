@@ -8,7 +8,7 @@ const Nav = (props) => {
     return(
     <div className={styles.navContainer}>
         <Logo/>
-        <SeacrhBar/>
+        <SeacrhBar setCurrentPage={props.setCurrentPage}/>
         <AddAct></AddAct>
     </div>
     )

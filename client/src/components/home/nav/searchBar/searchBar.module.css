@@ -44,4 +44,9 @@
     .searchBarInput{
         height: 23px; 
     }
+
+    .searchBarContainer{
+        order: 3;
+    }
+    
 }
