@@ -2,7 +2,7 @@
 import LandingPage from './components/landingPage/landingPage';
 import Home from './components/home/home';
 import { Route } from "react-router-dom";
-import CountryDetail from './components/home/countriesContainer/country/countryDetail/countryDetail';
+import CountryDetail from './components/home/country/countryDetail/countryDetail';
 import ActForm from './components/activityForm/activityForm';
 
 function App() {

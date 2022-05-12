@@ -1,13 +1,13 @@
 import React, { useEffect, useState,} from "react";
 import Country from "./country/country";
-import { getActivities, getCountries,filterByContinent,orderByPopulation, orderByAlpha, filterByActivity} from "../../../redux/actions/actions";
+import { getActivities, getCountries,filterByContinent,orderByPopulation, orderByAlpha, filterByActivity} from "../../redux/actions/actions";
 import { connect } from "react-redux";
-import styles from'./countriesContainer.module.css';
+import styles from './home.module.css';
 import Pagination from "./Pagination";
 import Nav from './nav/nav';
-import Loading from "../../loading/Loading";
+import Loading from "../loading/Loading";
 
-const CountriesContainer = (props) => {
+const Home = (props) => {
 
     useEffect(() => {
         props.getCountries()
@@ -165,7 +165,7 @@ export const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountriesContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 
 
 

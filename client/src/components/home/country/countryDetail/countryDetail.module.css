@@ -44,7 +44,7 @@
     height: 30px;
     background-color: rgba(245, 222, 179, 0.852);
     border-radius:10px;
-    padding: 10px;
+    padding: 5px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     transition-duration: 0.5s;
 }

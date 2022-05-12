@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getCountryDetail } from "../../../../../redux/actions/actions";
+import { getCountryDetail } from "../../../../redux/actions/actions";
 import styles from './countryDetail.module.css';
-import BackButton from "../../../../backButton/backButton";
-import Loading from "../../../../loading/Loading";
+import BackButton from "../../../backButton/backButton";
+import Loading from "../../../loading/Loading";
 
 const CountryDetail = (props) => {
     const {id} = useParams();

@@ -5,7 +5,7 @@ import styles from './Loading.module.css';
 const Loading = () => {
     return(
         <div className={styles.loadingContainer}>
-            <img className={styles.loadingLogo} src={img}></img>
+            <img alt="Loading" className={styles.loadingLogo} src={img}></img>
             <h1 className={styles.loading}>Loading...</h1>
         </div>
     )

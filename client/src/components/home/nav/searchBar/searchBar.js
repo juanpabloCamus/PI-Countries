@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setSearch } from "../../../../../redux/actions/actions";
+import { setSearch } from "../../../../redux/actions/actions";
 import styles from './searchBar.module.css'
-import img from '../../../../../assets/lupa.png'
+import img from '../../../../assets/lupa.png'
 
 export function SeacrhBar (props) {
 

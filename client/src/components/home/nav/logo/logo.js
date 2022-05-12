@@ -1,6 +1,6 @@
 import React from "react";
 import styles from './logo.module.css'
-import img from '../../../../../assets/logoworld.png'
+import img from '../../../../assets/logoworld.png'
 
 export function Logo (){
     return(
