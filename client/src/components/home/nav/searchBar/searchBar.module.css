@@ -37,9 +37,11 @@
     width: 20px;
 }
 
-@media (max-width: 500px) {
-    .searchBarContainer{
-        
+@media (max-width: 450px) {
+    .searchBarInput, .searchBarButton{
+        margin-top: 15px;
     }
-   
+    .searchBarInput{
+        height: 23px; 
+    }
 }

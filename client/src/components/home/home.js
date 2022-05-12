@@ -140,7 +140,7 @@ const Home = (props) => {
                 ))}
             </div>
             
-            <Pagination countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
+            <Pagination setCurrentPage={setCurrentPage} currrentPage={currrentPage} countriesPerPage={countriesPerPage} totalCountries={props.countries.length} paginate={paginate}/>
             
         </div>     
     )

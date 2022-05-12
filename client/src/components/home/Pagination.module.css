@@ -4,19 +4,18 @@
     background: linear-gradient(to right, #93291E, #BC2537); 
     padding: 10px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     border-radius:5px ;
     gap: 5px;
-    max-width: 900px;
+    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.pagButton{
-    width: 30px;
-    height: 20px;
-    border-radius: 2px;
+.pagButton, .currentButton{
+    width: 40px;
+    height: 30px;
+    border-radius: 5px;
     background-color: rgba(245, 222, 179, 0.852);
     color: black;
     cursor: pointer;
@@ -25,8 +24,30 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.pagButton:hover{
+.pagButton:hover, .currentButton:hover{
     background-color: #243B55;
     color: aliceblue;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.currentButton{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.currentPage{
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.directionContainer{
+    display: flex;
+}
+
+@media (max-width: 450px) {
+    .pagButton, .currentButton{
+        width: 30px;
+        height: 20px;
+    }
 }
