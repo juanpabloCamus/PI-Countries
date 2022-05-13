@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { setSearch } from "../../../../redux/actions/actions";
 import styles from './searchBar.module.css'

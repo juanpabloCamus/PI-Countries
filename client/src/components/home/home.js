@@ -29,12 +29,14 @@ const Home = (props) => {
     
     const filterByContinent = async (e) => {
         e.preventDefault();
+        setCurrentPage(1);
         await props.getCountries();
         if (e.target.value === 'All') props.getCountries();
         else props.filterByContinent(e.target.value);
     }
 
     const filterByActivity = (e) => {
+        setCurrentPage(1);
         if(e.target.value === '---') return props.getCountries()
         e.preventDefault();
         props.filterByActivity(e.target.value)
