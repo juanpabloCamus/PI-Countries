@@ -14,6 +14,7 @@ const Home = (props) => {
         props.getActivities()
     }, [])
 
+
     const [order, setOrder] = useState('');
 
     const [currrentPage, setCurrentPage] = useState(1);
@@ -23,10 +24,13 @@ const Home = (props) => {
     let currrentCountries = props.countries.slice(indexOfFirstCountry, indexOfLastCountry);
     const paginate = (pageNumber) => {
         setCurrentPage(pageNumber);
-        // if(pageNumber === 1) setCountriesPerPage(9)
-        // else setCountriesPerPage(10)
-    }   
-    
+    }
+
+    useEffect(()=>{
+        if(currrentPage === 1) setCountriesPerPage(9)
+        else setCountriesPerPage(10)
+    },[currrentPage])
+
     const filterByContinent = async (e) => {
         e.preventDefault();
         setCurrentPage(1);
