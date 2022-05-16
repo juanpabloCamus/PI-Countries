@@ -1,6 +1,7 @@
 .lpContainer{
     text-align: center;
     margin-top: 230px;
+    
 }
 
 @keyframes rotation {
@@ -36,13 +37,35 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-.lpButton:hover{
+.lpButton:hover,.aboutButton:hover {
     background-color: rgb(172, 17, 17);
     color: aliceblue;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.aboutButton{
+    border: none;
+    transition-duration: 0.5s;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    cursor: pointer;
+    height: 30px;
+    width: 110px;
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: rgba(245, 222, 179, 0.852);
+    color: black;
+    padding: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
 .by{
-    margin-top: 300px;
+    margin-top: 270px;
     color: rgba(245, 222, 179, 0.852);
 }

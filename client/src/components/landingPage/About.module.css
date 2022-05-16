@@ -1,0 +1,85 @@
+.aboutContainer{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    background-color: rgba(255, 255, 255, 0.028);
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.logosContainer{
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 40px;
+    gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.logoContainer{
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.subLogoContainer{
+    padding: 10px;
+    padding-top: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: rgba(240, 248, 255, 0.102);
+    transition-duration: 1s;
+
+}
+.subLogoContainer:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+.subLogoContainer label{
+    font-size: large;
+    font-weight: 500;
+}
+
+.imgLogo{
+    object-fit: contain;
+    height: 90px;
+    width: 90px;
+}
+
+.a{
+    color: white;
+}
+
+@media (max-width: 700px) and (min-width:560px) {
+    .logoContainer{
+        flex-wrap: nowrap;
+        
+    }
+
+    .imgLogo{
+        object-fit: contain;
+        height: 70px;
+        width: 60px;
+    }
+}
+
+
+
+
+

@@ -9,6 +9,8 @@
 
 .logoContainer{
   text-align: center;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .navLogo{

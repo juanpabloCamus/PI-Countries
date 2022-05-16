@@ -35,6 +35,7 @@ export function ActForm (){
     });
 
     function handleSelect(e){
+        if(selected.includes(e.target.value)) return null
         let names = [];
         names = countries.filter((c) => c.id === e.target.value)
         names = names.map(c => c.commonName)
